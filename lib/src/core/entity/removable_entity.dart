@@ -1,0 +1,3 @@
+mixin RemovableEntity {
+  void remove();
+}
