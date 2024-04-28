@@ -4,8 +4,9 @@ import 'package:flash_focus/src/domain/attempt/entity/attempt.dart';
 
 abstract class AttemptRepositoryPort {
   Future<List<AttemptEntity>> findAttempts({
-    String? front,
-    String? back,
+    StringIdentifier? cardId,
+    AttemptResult? result,
+    DateTime? createdAt,
     RepositoryFindOptions? option,
   });
 

@@ -1,3 +1,5 @@
 abstract class UseCase<I, O> {
-  Future<O> call({I? input});
+  Future<O> call({
+    required I input,
+  });
 }
