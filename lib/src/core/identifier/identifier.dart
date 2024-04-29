@@ -13,6 +13,14 @@ class StringIdentifier extends Identifier with EquatableMixin {
     required this.value,
   });
 
+  static List<StringIdentifier> fromList(List<String> values) {
+    return values
+        .map(
+          (String value) => StringIdentifier(value: value),
+        )
+        .toList();
+  }
+
   @override
   List<Object?> get props => [
         value,
@@ -25,6 +33,14 @@ class IntIdentifier extends Identifier with EquatableMixin {
   const IntIdentifier({
     required this.value,
   });
+
+  static List<IntIdentifier> fromList(List<int> values) {
+    return values
+        .map(
+          (int value) => IntIdentifier(value: value),
+        )
+        .toList();
+  }
 
   @override
   List<Object?> get props => [value];
