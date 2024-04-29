@@ -169,6 +169,7 @@ class SQLiteAttemptRepository implements AttemptRepositoryPort {
     }
   }
 
+  @override
   Future<void> removeAttempts({
     required List<AttemptEntity> attempts,
     RepositoryRemoveOptions? option,

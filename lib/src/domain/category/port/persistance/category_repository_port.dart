@@ -27,4 +27,9 @@ abstract class CategoryRepositoryPort {
     required CategoryEntity category,
     RepositoryRemoveOptions? option,
   });
+
+  Future<void> removeCategories({
+    required List<CategoryEntity> categories,
+    RepositoryRemoveOptions? option,
+  });
 }

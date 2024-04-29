@@ -95,7 +95,7 @@ class SQLiteCategoryRepository implements CategoryRepositoryPort {
 
     if (results.isEmpty) {
       // TODO throw not found
-      throw UnimplementedError(); 
+      throw UnimplementedError();
     }
 
     SQLiteCategory sqLiteCategory = SQLiteCategory.fromMap(results.first);
@@ -118,7 +118,8 @@ class SQLiteCategoryRepository implements CategoryRepositoryPort {
       ],
     );
   }
-  
+
+  @override
   Future<void> removeCategories({
     required List<CategoryEntity> categories,
     RepositoryRemoveOptions? option,

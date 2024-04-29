@@ -29,4 +29,9 @@ abstract class AttemptRepositoryPort {
     required AttemptEntity attempt,
     RepositoryRemoveOptions? option,
   });
+
+  Future<void> removeAttempts({
+    required List<AttemptEntity> attempts,
+    RepositoryRemoveOptions? option,
+  });
 }

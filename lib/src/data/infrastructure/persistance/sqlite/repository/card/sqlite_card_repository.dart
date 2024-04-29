@@ -215,6 +215,7 @@ class SQLiteCardRepository implements CardRepositoryPort {
     );
   }
 
+  @override
   Future<void> removeCards({
     required List<CardEntity> cards,
     RepositoryRemoveOptions? option,

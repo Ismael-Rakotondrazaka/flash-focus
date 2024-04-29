@@ -34,4 +34,9 @@ abstract class CardRepositoryPort {
     required CardEntity card,
     RepositoryRemoveOptions? option,
   });
+
+  Future<void> removeCards({
+    required List<CardEntity> cards,
+    RepositoryRemoveOptions? option,
+  });
 }
