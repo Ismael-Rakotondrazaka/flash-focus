@@ -3,7 +3,7 @@ import 'package:flash_focus/src/core/entity/entity.dart';
 import 'package:flash_focus/src/core/entity/removable_entity.dart';
 import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flash_focus/src/core/util/date/copy_date_time.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flash_focus/src/domain/category/entity/category.dart';
 
 class CardSide with EquatableMixin {
   late String? _title;
@@ -63,15 +63,15 @@ class CardEntity extends Entity<StringIdentifier>
   IntIdentifier? _categoryId;
   IntIdentifier? get categoryId => _categoryId;
 
-  Category? _category;
-  Category? get category => _category;
+  CategoryEntity? _category;
+  CategoryEntity? get category => _category;
 
   CardEntity({
     super.id,
     required CardSide front,
     required CardSide back,
     IntIdentifier? categoryId,
-    Category? category,
+    CategoryEntity? category,
     DateTime? createdAt,
     DateTime? updatedAt,
     DateTime? deletedAt,
@@ -100,7 +100,7 @@ class CardEntity extends Entity<StringIdentifier>
     String? backTitle,
     String? backContent,
     IntIdentifier? categoryId,
-    Category? category,
+    CategoryEntity? category,
   }) {
     _updatedAt = DateTime.now();
 

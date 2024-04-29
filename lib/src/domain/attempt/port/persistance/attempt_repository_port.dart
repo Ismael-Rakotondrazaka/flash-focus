@@ -21,12 +21,12 @@ abstract class AttemptRepositoryPort {
 
   Future<void> updateAttempts({
     List<IntIdentifier>? ids,
-    DateTime deletedAt,
+    DateTime? deletedAt,
     RepositoryFindOptions? option,
   });
 
   Future<void> removeAttempt({
     required AttemptEntity attempt,
-    RepositoryRemoveOptions option,
+    RepositoryRemoveOptions? option,
   });
 }
