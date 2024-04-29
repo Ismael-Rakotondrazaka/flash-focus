@@ -6,7 +6,7 @@ abstract class AttemptRepositoryPort {
   Future<List<AttemptEntity>> findAttempts({
     List<IntIdentifier>? attemptIds,
     StringIdentifier? cardId,
-    AttemptResult? result,
+    bool? isSuccess,
     DateTime? createdAt,
     RepositoryFindOptions? option,
   });

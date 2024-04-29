@@ -81,7 +81,7 @@ class SQLiteAttemptRepository implements AttemptRepositoryPort {
   Future<List<AttemptEntity>> findAttempts({
     List<IntIdentifier>? attemptIds,
     StringIdentifier? cardId,
-    AttemptResult? result,
+    bool? isSuccess,
     DateTime? createdAt,
     RepositoryFindOptions? option,
   }) async {
@@ -100,10 +100,10 @@ class SQLiteAttemptRepository implements AttemptRepositoryPort {
       whereArgs.add(cardId.value);
     }
 
-    if (result is AttemptResult) {
-      wheres.add('${SQLiteAttempt.resultColumnName} = ?');
+    if (isSuccess is bool) {
+      wheres.add('${SQLiteAttempt.isSuccessColumnName} = ?');
 
-      String sqLiteResult = SQLiteAttemptResultMapper.toSQLiteEntity(result);
+      int sqLiteResult = SQLiteAttemptIsSuccessMapper.toSQLiteEntity(isSuccess);
       whereArgs.add(sqLiteResult);
     }
 

@@ -24,7 +24,7 @@ class CreateAttemptService implements CreateAttemptUseCase {
 
       AttemptEntity attempt = AttemptEntity(
         cardId: input.cardId,
-        result: input.result,
+        isSuccess: input.isSuccess,
       );
 
       await attemptRepository.addAttempt(attempt: attempt);

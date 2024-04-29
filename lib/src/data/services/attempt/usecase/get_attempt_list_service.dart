@@ -20,7 +20,7 @@ class GetAttemptListService implements GetAttemptListUseCase {
         attemptIds: input.attemptIds,
         cardId: input.cardId,
         createdAt: input.createdAt,
-        result: input.result,
+        isSuccess: input.isSuccess,
         option: RepositoryFindOptions(
           includeRemoved: input.includeRemoved ?? false,
         ),

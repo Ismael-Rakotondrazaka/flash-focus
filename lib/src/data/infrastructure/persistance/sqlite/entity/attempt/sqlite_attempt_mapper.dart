@@ -9,7 +9,7 @@ abstract class SQLiteAttemptMapper {
     return AttemptEntity(
       id: IntIdentifier(value: sqLiteAttempt.id),
       cardId: StringIdentifier(value: sqLiteAttempt.cardId),
-      result: SQLiteAttemptResultMapper.toDomainEntity(sqLiteAttempt.result),
+      isSuccess: SQLiteAttemptIsSuccessMapper.toDomainEntity(sqLiteAttempt.isSuccess),
       createdAt: DateTime.parse(sqLiteAttempt.createdAt),
       deletedAt: sqLiteAttempt.deletedAt != null
           ? DateTime.parse(sqLiteAttempt.deletedAt!)
@@ -21,7 +21,7 @@ abstract class SQLiteAttemptMapper {
     return SQLiteAttempt(
       id: attemptEntity.id.value,
       cardId: attemptEntity.cardId.value,
-      result: SQLiteAttemptResultMapper.toSQLiteEntity(attemptEntity.result),
+      isSuccess: SQLiteAttemptIsSuccessMapper.toSQLiteEntity(attemptEntity.isSuccess),
       createdAt: attemptEntity.createdAt.toIso8601String(),
       deletedAt: attemptEntity.deletedAt?.toIso8601String(),
     );
@@ -30,37 +30,19 @@ abstract class SQLiteAttemptMapper {
   static List<AttemptEntity> toDomainEntities(
       List<SQLiteAttempt> sqLiteAttempts) {
     return sqLiteAttempts
-        .map((SQLiteAttempt sqLiteAttempt) => toDomainEntity(sqLiteAttempt))
+        .map(
+          (SQLiteAttempt sqLiteAttempt) => toDomainEntity(sqLiteAttempt),
+        )
         .toList();
   }
 }
 
-abstract class SQLiteAttemptResultMapper {
-  static final Map<String, AttemptResult> _map = {
-    "success": AttemptResult.success,
-    "failure": AttemptResult.failure,
-  };
-
-  static AttemptResult toDomainEntity(String raw) {
-    final result = _map[raw];
-
-    if (result == null) {
-      // TODO create custom error
-      throw UnimplementedError();
-    }
-
-    return result;
+abstract class SQLiteAttemptIsSuccessMapper {
+  static bool toDomainEntity(int raw) {
+    return raw == 1;
   }
 
-  static String toSQLiteEntity(AttemptResult result) {
-    // Reverse map to find the key that matches the given AttemptResult
-    for (var entry in _map.entries) {
-      if (entry.value == result) {
-        return entry.key;
-      }
-    }
-
-    // TODO create custom error
-    throw UnimplementedError("Invalid attempt result: $result");
+  static int toSQLiteEntity(bool isSuccess) {
+    return isSuccess ? 1 : 0;
   }
 }
