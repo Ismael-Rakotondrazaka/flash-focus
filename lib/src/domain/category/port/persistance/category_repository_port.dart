@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 @immutable
 abstract class CategoryRepositoryPort {
   Future<List<CategoryEntity>> findCategories({
+    List<IntIdentifier>? categoryIds,
     String? name,
     RepositoryFindOptions? option,
   });

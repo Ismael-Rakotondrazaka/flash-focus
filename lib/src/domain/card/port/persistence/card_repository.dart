@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 @immutable
 abstract class CardRepositoryPort {
   Future<List<CardEntity>> findCards({
+    List<StringIdentifier>? cardIds,
     String? front,
     String? back,
     RepositoryFindOptions? option,
