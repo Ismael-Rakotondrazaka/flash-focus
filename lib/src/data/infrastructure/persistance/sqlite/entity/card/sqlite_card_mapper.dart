@@ -24,11 +24,11 @@ abstract class SQLiteCardMapper {
       deletedAt: sqLiteCard.deletedAt != null
           ? DateTime.parse(sqLiteCard.deletedAt!)
           : null,
-      front: CardSide(
+      front: CardSideEntity(
         content: sqLiteCard.frontContent,
         title: sqLiteCard.frontTitle,
       ),
-      back: CardSide(
+      back: CardSideEntity(
         content: sqLiteCard.frontContent,
         title: sqLiteCard.frontTitle,
       ),

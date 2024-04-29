@@ -5,11 +5,11 @@ import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flash_focus/src/core/util/date/copy_date_time.dart';
 import 'package:flash_focus/src/domain/category/entity/category_entity.dart';
 
-class CardSide with EquatableMixin {
+class CardSideEntity with EquatableMixin {
   late String? _title;
   late String _content;
 
-  CardSide({
+  CardSideEntity({
     String? title,
     required String content,
   }) {
@@ -45,11 +45,11 @@ class CardSide with EquatableMixin {
 
 class CardEntity extends Entity<StringIdentifier>
     with EquatableMixin, RemovableEntity {
-  late CardSide _front;
-  CardSide get front => _front;
+  late CardSideEntity _front;
+  CardSideEntity get front => _front;
 
-  late CardSide _back;
-  CardSide get back => _back;
+  late CardSideEntity _back;
+  CardSideEntity get back => _back;
 
   late DateTime _createdAt;
   DateTime get createdAt => _createdAt;
@@ -68,8 +68,8 @@ class CardEntity extends Entity<StringIdentifier>
 
   CardEntity({
     super.id,
-    required CardSide front,
-    required CardSide back,
+    required CardSideEntity front,
+    required CardSideEntity back,
     IntIdentifier? categoryId,
     CategoryEntity? category,
     DateTime? createdAt,

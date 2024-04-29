@@ -32,11 +32,11 @@ class CreateCardService implements CreateCardUseCase {
       }
 
       CardEntity card = CardEntity(
-        front: CardSide(
+        front: CardSideEntity(
           content: input.frontContent,
           title: input.frontTitle,
         ),
-        back: CardSide(
+        back: CardSideEntity(
           content: input.backContent,
           title: input.backTitle,
         ),
