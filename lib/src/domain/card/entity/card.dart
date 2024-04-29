@@ -122,6 +122,7 @@ class CardEntity extends Entity<StringIdentifier>
   @override
   void remove() {
     _deletedAt = DateTime.now();
+    _updatedAt = copyDateTime(_deletedAt!);
   }
 
   @override
