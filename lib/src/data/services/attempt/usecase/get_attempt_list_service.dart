@@ -17,12 +17,13 @@ class GetAttemptListService implements GetAttemptListUseCase {
   }) async {
     try {
       List<AttemptEntity> attempts = await attemptRepository.findAttempts(
+        attemptIds: input.attemptIds,
         cardId: input.cardId,
         createdAt: input.createdAt,
-        option: const RepositoryFindOptions(
-          includeRemoved: false,
-        ),
         result: input.result,
+        option: RepositoryFindOptions(
+          includeRemoved: input.includeRemoved ?? false,
+        ),
       );
 
       return attempts;

@@ -1,3 +1,4 @@
+import 'package:flash_focus/src/core/persistance/repository_option.dart';
 import 'package:flash_focus/src/domain/attempt/entity/attempt.dart';
 import 'package:flash_focus/src/domain/attempt/port/persistance/attempt_repository_port.dart';
 import 'package:flash_focus/src/domain/attempt/port/usecase/remove_attempt_port.dart';
@@ -17,11 +18,17 @@ class RemoveAttemptService implements RemoveAttemptUseCase {
     try {
       AttemptEntity attempt = await attemptRepository.findAttempt(
         id: input.attemptId,
+        option: const RepositoryFindOptions(includeRemoved: true),
       );
 
       attempt.remove();
 
-      await attemptRepository.removeAttempt(attempt: attempt);
+      await attemptRepository.removeAttempt(
+        attempt: attempt,
+        option: RepositoryRemoveOptions(
+          disableSoftDeleting: input.disableSoftDeleting ?? false,
+        ),
+      );
 
       return attempt;
     } catch (e) {

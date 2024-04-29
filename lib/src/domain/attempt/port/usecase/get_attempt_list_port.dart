@@ -4,13 +4,17 @@ import 'package:flutter/material.dart';
 
 @immutable
 abstract class GetAttemptListPort {
+  final List<IntIdentifier>? attemptIds;
   final StringIdentifier? cardId;
   final AttemptResult? result;
   final DateTime? createdAt;
+  final bool? includeRemoved;
 
   const GetAttemptListPort({
-    required this.cardId,
-    required this.result,
-    required this.createdAt,
+    this.attemptIds,
+    this.cardId,
+    this.result,
+    this.createdAt,
+    this.includeRemoved,
   });
 }

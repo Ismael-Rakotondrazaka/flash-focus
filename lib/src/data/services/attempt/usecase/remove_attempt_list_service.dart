@@ -1,3 +1,4 @@
+import 'package:flash_focus/src/core/persistance/repository_option.dart';
 import 'package:flash_focus/src/domain/attempt/entity/attempt.dart';
 import 'package:flash_focus/src/domain/attempt/port/persistance/attempt_repository_port.dart';
 import 'package:flash_focus/src/domain/attempt/port/usecase/remove_attempt_list_port.dart';
@@ -23,7 +24,12 @@ class RemoveAttemptListService implements RemoveAttemptListUseCase {
         attempt.remove();
       }
 
-      await attemptRepository.removeAttempts(attempts: attempts);
+      await attemptRepository.removeAttempts(
+        attempts: attempts,
+        option: RepositoryRemoveOptions(
+          disableSoftDeleting: input.disableSoftDeleting ?? false,
+        ),
+      );
     } catch (e) {
       rethrow;
     }

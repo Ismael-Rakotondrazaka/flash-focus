@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 @immutable
 abstract class RemoveAttemptPort {
   final IntIdentifier attemptId;
+  final bool? disableSoftDeleting;
 
   const RemoveAttemptPort({
     required this.attemptId,
+    this.disableSoftDeleting,
   });
 }

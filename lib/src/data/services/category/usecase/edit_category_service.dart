@@ -1,5 +1,4 @@
-
-
+import 'package:flash_focus/src/core/persistance/repository_option.dart';
 import 'package:flash_focus/src/domain/category/entity/category.dart';
 import 'package:flash_focus/src/domain/category/port/persistance/category_repository_port.dart';
 import 'package:flash_focus/src/domain/category/port/usecase/edit_category_port.dart';
@@ -19,6 +18,7 @@ class EditCategoryService implements EditCategoryUseCase {
     try {
       CategoryEntity category = await categoryRepository.findCategory(
         id: input.id,
+        option: const RepositoryFindOptions(includeRemoved: true),
       );
 
       category.edit(name: input.name);

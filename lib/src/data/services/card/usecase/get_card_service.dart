@@ -18,8 +18,8 @@ class GetCardService implements GetCardUseCase {
     try {
       CardEntity card = await cardRepository.findCard(
         id: input.cardId,
-        option: const RepositoryFindOptions(
-          includeRemoved: false,
+        option: RepositoryFindOptions(
+          includeRemoved: input.includeRemoved ?? false,
         ),
       );
 

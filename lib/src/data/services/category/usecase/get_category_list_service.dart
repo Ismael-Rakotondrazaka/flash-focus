@@ -18,6 +18,7 @@ class GetCategoryListService implements GetCategoryListUseCase {
     try {
       List<CategoryEntity> categories = await categoryRepository.findCategories(
         name: input.name,
+        categoryIds: input.categoryIds,
         option: RepositoryFindOptions(
           includeRemoved: input.includeRemoved,
         ),

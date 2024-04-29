@@ -1,3 +1,4 @@
+import 'package:flash_focus/src/core/persistance/repository_option.dart';
 import 'package:flash_focus/src/domain/card/entity/card.dart';
 import 'package:flash_focus/src/domain/card/port/persistence/card_repository.dart';
 import 'package:flash_focus/src/domain/card/port/usecase/remove_card_list_port.dart';
@@ -17,13 +18,21 @@ class RemoveCardListService implements RemoveCardListUseCase {
     try {
       List<CardEntity> cards = await attemptRepository.findCards(
         cardIds: input.cardIds,
+        option: const RepositoryFindOptions(
+          includeRemoved: true,
+        ),
       );
 
       for (var attempt in cards) {
         attempt.remove();
       }
 
-      await attemptRepository.removeCards(cards: cards);
+      await attemptRepository.removeCards(
+        cards: cards,
+        option: RepositoryRemoveOptions(
+          disableSoftDeleting: input.disableSoftDeleting ?? false,
+        ),
+      );
     } catch (e) {
       rethrow;
     }

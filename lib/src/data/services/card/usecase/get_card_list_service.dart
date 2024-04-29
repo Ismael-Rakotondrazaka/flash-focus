@@ -17,6 +17,7 @@ class GetCardListService implements GetCardListUseCase {
   }) async {
     try {
       List<CardEntity> cards = await cardRepository.findCards(
+        cardIds: input.cardIds,
         back: input.back,
         front: input.front,
         option: RepositoryFindOptions(

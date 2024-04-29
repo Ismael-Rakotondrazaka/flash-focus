@@ -1,3 +1,4 @@
+import 'package:flash_focus/src/core/persistance/repository_option.dart';
 import 'package:flash_focus/src/domain/card/entity/card.dart';
 import 'package:flash_focus/src/domain/card/port/persistence/card_repository.dart';
 import 'package:flash_focus/src/domain/card/port/usecase/edit_card_port.dart';
@@ -17,6 +18,7 @@ class EditCardService implements EditCardUseCase {
     try {
       CardEntity card = await cardRepository.findCard(
         id: input.cardId,
+        option: const RepositoryFindOptions(includeRemoved: false),
       );
 
       card.edit(
