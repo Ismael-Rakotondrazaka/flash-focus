@@ -1,3 +1,4 @@
+import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flash_focus/src/domain/attempt/entity/attempt_entity.dart';
 import 'package:flash_focus/src/domain/attempt/port/persistance/attempt_repository_port.dart';
 import 'package:flash_focus/src/domain/attempt/port/usecase/create_attempt_port.dart';
@@ -18,12 +19,14 @@ class CreateAttemptService implements CreateAttemptUseCase {
     required CreateAttemptPort input,
   }) async {
     try {
+      StringIdentifier cardId = StringIdentifier.from(input.cardId);
+
       await cardRepository.findCard(
-        id: input.cardId,
+        id: cardId,
       );
 
       AttemptEntity attempt = AttemptEntity(
-        cardId: input.cardId,
+        cardId: cardId,
         isSuccess: input.isSuccess,
       );
 

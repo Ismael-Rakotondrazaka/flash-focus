@@ -1,9 +1,8 @@
-import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flutter/material.dart';
 
 @immutable
 abstract class EditCardPort {
-  final StringIdentifier cardId;
+  final String cardId;
   final String? frontTitle;
   final String? frontContent;
   final String? backTitle;

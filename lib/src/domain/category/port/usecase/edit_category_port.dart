@@ -1,9 +1,8 @@
-import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flutter/material.dart';
 
 @immutable
 abstract class EditCategoryPort {
-  final IntIdentifier id;
+  final int id;
   final String name;
 
   const EditCategoryPort({

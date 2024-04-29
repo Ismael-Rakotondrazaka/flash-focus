@@ -1,3 +1,4 @@
+import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flash_focus/src/core/persistance/repository_option.dart';
 import 'package:flash_focus/src/domain/card/entity/card_entity.dart';
 import 'package:flash_focus/src/domain/card/port/persistence/card_repository.dart';
@@ -17,7 +18,7 @@ class RemoveCardService implements RemoveCardUseCase {
   }) async {
     try {
       CardEntity card = await cardRepository.findCard(
-        id: input.cardId,
+        id: StringIdentifier.from(input.cardId),
         option: const RepositoryFindOptions(
           includeRemoved: true,
         ),

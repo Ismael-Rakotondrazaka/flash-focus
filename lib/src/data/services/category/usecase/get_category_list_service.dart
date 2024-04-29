@@ -1,3 +1,4 @@
+import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flash_focus/src/core/persistance/repository_option.dart';
 import 'package:flash_focus/src/domain/category/entity/category_entity.dart';
 import 'package:flash_focus/src/domain/category/port/persistance/category_repository_port.dart';
@@ -18,7 +19,7 @@ class GetCategoryListService implements GetCategoryListUseCase {
     try {
       List<CategoryEntity> categories = await categoryRepository.findCategories(
         name: input.name,
-        categoryIds: input.categoryIds,
+        categoryIds: IntIdentifier.tryFromList(input.categoryIds),
         option: RepositoryFindOptions(
           includeRemoved: input.includeRemoved,
         ),

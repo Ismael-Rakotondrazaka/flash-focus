@@ -1,3 +1,4 @@
+import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flash_focus/src/core/persistance/repository_option.dart';
 import 'package:flash_focus/src/domain/category/entity/category_entity.dart';
 import 'package:flash_focus/src/domain/category/port/persistance/category_repository_port.dart';
@@ -17,7 +18,7 @@ class EditCategoryService implements EditCategoryUseCase {
   }) async {
     try {
       CategoryEntity category = await categoryRepository.findCategory(
-        id: input.id,
+        id: IntIdentifier.from(input.id),
         option: const RepositoryFindOptions(includeRemoved: true),
       );
 

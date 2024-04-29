@@ -1,4 +1,5 @@
 import 'package:flash_focus/src/core/identifier/identifier.dart';
+import 'package:flash_focus/src/core/persistance/repository_option.dart';
 import 'package:flash_focus/src/domain/card/entity/card_entity.dart';
 import 'package:flash_focus/src/domain/card/port/persistence/card_repository.dart';
 import 'package:flash_focus/src/domain/card/port/usecase/create_card_port.dart';
@@ -21,8 +22,13 @@ class CreateCardService implements CreateCardUseCase {
   }) async {
     try {
       CategoryEntity? category;
-      if (input.categoryId is IntIdentifier) {
-        category = await categoryRepository.findCategory(id: input.categoryId);
+      if (input.categoryId is int) {
+        category = await categoryRepository.findCategory(
+          id: IntIdentifier.from(input.categoryId!),
+          option: const RepositoryFindOptions(
+            includeRemoved: false,
+          ),
+        );
       }
 
       CardEntity card = CardEntity(
@@ -34,7 +40,7 @@ class CreateCardService implements CreateCardUseCase {
           content: input.backContent,
           title: input.backTitle,
         ),
-        categoryId: input.categoryId,
+        categoryId: IntIdentifier.tryFrom(input.categoryId),
         category: category,
       );
 

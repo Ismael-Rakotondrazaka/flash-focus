@@ -1,3 +1,4 @@
+import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flash_focus/src/core/persistance/repository_option.dart';
 import 'package:flash_focus/src/domain/attempt/entity/attempt_entity.dart';
 import 'package:flash_focus/src/domain/attempt/port/persistance/attempt_repository_port.dart';
@@ -17,7 +18,7 @@ class RemoveAttemptListService implements RemoveAttemptListUseCase {
   }) async {
     try {
       List<AttemptEntity> attempts = await attemptRepository.findAttempts(
-        attemptIds: input.attemptIds,
+        attemptIds: IntIdentifier.fromList(input.attemptIds),
       );
 
       for (var attempt in attempts) {

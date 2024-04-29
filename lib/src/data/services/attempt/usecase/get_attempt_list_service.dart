@@ -1,3 +1,4 @@
+import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flash_focus/src/core/persistance/repository_option.dart';
 import 'package:flash_focus/src/domain/attempt/entity/attempt_entity.dart';
 import 'package:flash_focus/src/domain/attempt/port/persistance/attempt_repository_port.dart';
@@ -17,8 +18,8 @@ class GetAttemptListService implements GetAttemptListUseCase {
   }) async {
     try {
       List<AttemptEntity> attempts = await attemptRepository.findAttempts(
-        attemptIds: input.attemptIds,
-        cardId: input.cardId,
+        attemptIds: IntIdentifier.tryFromList(input.attemptIds),
+        cardId: StringIdentifier.tryFrom(input.cardId),
         createdAt: input.createdAt,
         isSuccess: input.isSuccess,
         option: RepositoryFindOptions(

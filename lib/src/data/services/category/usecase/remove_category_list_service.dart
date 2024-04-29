@@ -1,3 +1,4 @@
+import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flash_focus/src/core/persistance/repository_option.dart';
 import 'package:flash_focus/src/domain/category/entity/category_entity.dart';
 import 'package:flash_focus/src/domain/category/port/persistance/category_repository_port.dart';
@@ -17,7 +18,7 @@ class RemoveCategoryListService implements RemoveCategoryListUseCase {
   }) async {
     try {
       List<CategoryEntity> categories = await categoryRepository.findCategories(
-        categoryIds: input.categoryIds,
+        categoryIds: IntIdentifier.fromList(input.categoryIds),
         option: const RepositoryFindOptions(
           includeRemoved: true,
         ),

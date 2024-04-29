@@ -1,4 +1,3 @@
-import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flutter/material.dart';
 
 @immutable
@@ -7,7 +6,7 @@ abstract class CreateCardPort {
   final String frontContent;
   final String? backTitle;
   final String backContent;
-  final IntIdentifier? categoryId;
+  final int? categoryId;
 
   const CreateCardPort({
     this.frontTitle,
