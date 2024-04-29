@@ -34,11 +34,19 @@ class SQLiteCategoryRepository implements CategoryRepositoryPort {
 
   @override
   Future<List<CategoryEntity>> findCategories({
+    List<IntIdentifier>? categoryIds,
     String? name,
     RepositoryFindOptions? option,
   }) async {
     List<String> wheres = [];
     List<Object?> whereArgs = [];
+
+    if (categoryIds is List<IntIdentifier>) {
+      wheres.add('${SQLiteCategory.idColumnName} in ?');
+      whereArgs.add(
+        categoryIds.map((attemptId) => attemptId.value),
+      );
+    }
 
     if (name is String) {
       wheres.add("${SQLiteCategory.nameColumnName} LIKE ?");
@@ -51,7 +59,9 @@ class SQLiteCategoryRepository implements CategoryRepositoryPort {
       whereQuery += " WHERE ";
 
       if (wheres.length == 1) {
-        whereQuery += ' ${wheres[0]}';
+        whereQuery += ' ${wheres.first}';
+      } else {
+        whereQuery += '(${wheres.join(' AND ')})';
       }
     }
 
@@ -85,7 +95,9 @@ class SQLiteCategoryRepository implements CategoryRepositoryPort {
       whereQuery += " WHERE ";
 
       if (wheres.length == 1) {
-        whereQuery += wheres[0];
+        whereQuery += wheres.first;
+      } else {
+        whereQuery += '(${wheres.join(' AND ')})';
       }
     }
 

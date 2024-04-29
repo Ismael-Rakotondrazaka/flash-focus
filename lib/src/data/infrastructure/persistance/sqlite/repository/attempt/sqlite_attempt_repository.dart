@@ -79,6 +79,7 @@ class SQLiteAttemptRepository implements AttemptRepositoryPort {
 
   @override
   Future<List<AttemptEntity>> findAttempts({
+    List<IntIdentifier>? attemptIds,
     StringIdentifier? cardId,
     AttemptResult? result,
     DateTime? createdAt,
@@ -86,6 +87,13 @@ class SQLiteAttemptRepository implements AttemptRepositoryPort {
   }) async {
     List<String> wheres = [];
     List<Object?> whereArgs = [];
+
+    if (attemptIds is List<IntIdentifier>) {
+      wheres.add('${SQLiteAttempt.idColumnName} in ?');
+      whereArgs.add(
+        attemptIds.map((attemptId) => attemptId.value),
+      );
+    }
 
     if (cardId is StringIdentifier) {
       wheres.add('${SQLiteAttempt.cardIdColumnName} = ?');
@@ -122,7 +130,7 @@ class SQLiteAttemptRepository implements AttemptRepositoryPort {
       }
     }
 
-    String query = "$baseQuery $whereQuery LIMIT 1;";
+    String query = "$baseQuery $whereQuery;";
 
     var raws = await _db.rawQuery(query, whereArgs);
 

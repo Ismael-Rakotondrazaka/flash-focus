@@ -78,7 +78,7 @@ class SQLiteCardRepository implements CardRepositoryPort {
       whereQuery += " WHERE ";
 
       if (wheres.length == 1) {
-        whereQuery += wheres[0];
+        whereQuery += wheres.first;
       } else {
         whereQuery += '(${wheres.join(' AND ')})';
       }
@@ -100,12 +100,20 @@ class SQLiteCardRepository implements CardRepositoryPort {
 
   @override
   Future<List<CardEntity>> findCards({
+    List<StringIdentifier>? cardIds,
     String? front,
     String? back,
     RepositoryFindOptions? option,
   }) async {
     List<String> wheres = [];
     List<Object?> whereArgs = [];
+
+    if (cardIds is List<StringIdentifier>) {
+      wheres.add('${SQLiteCard.idColumnName} in ?');
+      whereArgs.add(
+        cardIds.map((attemptId) => attemptId.value),
+      );
+    }
 
     if (front is String && back is String) {
       wheres.add("""
