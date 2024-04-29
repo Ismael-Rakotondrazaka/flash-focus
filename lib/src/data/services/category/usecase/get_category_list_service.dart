@@ -1,5 +1,5 @@
 import 'package:flash_focus/src/core/persistance/repository_option.dart';
-import 'package:flash_focus/src/domain/category/entity/category.dart';
+import 'package:flash_focus/src/domain/category/entity/category_entity.dart';
 import 'package:flash_focus/src/domain/category/port/persistance/category_repository_port.dart';
 import 'package:flash_focus/src/domain/category/port/usecase/get_category_list_port.dart';
 import 'package:flash_focus/src/domain/category/usecase/get_category_list_usecase.dart';

@@ -1,7 +1,7 @@
 import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flash_focus/src/data/infrastructure/persistance/sqlite/entity/card/sqlite_card.dart';
 import 'package:flash_focus/src/data/infrastructure/persistance/sqlite/entity/category/sqlite_category_mapper.dart';
-import 'package:flash_focus/src/domain/card/entity/card.dart';
+import 'package:flash_focus/src/domain/card/entity/card_entity.dart';
 import 'package:flutter/material.dart';
 
 @immutable

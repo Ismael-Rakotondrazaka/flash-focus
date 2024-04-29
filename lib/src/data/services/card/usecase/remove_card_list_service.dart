@@ -1,5 +1,5 @@
 import 'package:flash_focus/src/core/persistance/repository_option.dart';
-import 'package:flash_focus/src/domain/card/entity/card.dart';
+import 'package:flash_focus/src/domain/card/entity/card_entity.dart';
 import 'package:flash_focus/src/domain/card/port/persistence/card_repository.dart';
 import 'package:flash_focus/src/domain/card/port/usecase/remove_card_list_port.dart';
 import 'package:flash_focus/src/domain/card/usecase/remove_card_list_usecase.dart';

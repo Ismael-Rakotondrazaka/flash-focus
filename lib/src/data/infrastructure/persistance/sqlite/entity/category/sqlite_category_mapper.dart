@@ -1,6 +1,6 @@
 import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flash_focus/src/data/infrastructure/persistance/sqlite/entity/category/sqlite_category.dart';
-import 'package:flash_focus/src/domain/category/entity/category.dart';
+import 'package:flash_focus/src/domain/category/entity/category_entity.dart';
 import 'package:flutter/foundation.dart';
 
 @immutable

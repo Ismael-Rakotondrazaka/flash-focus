@@ -1,6 +1,6 @@
 
 
-import 'package:flash_focus/src/domain/category/entity/category.dart';
+import 'package:flash_focus/src/domain/category/entity/category_entity.dart';
 import 'package:flash_focus/src/domain/category/port/persistance/category_repository_port.dart';
 import 'package:flash_focus/src/domain/category/port/usecase/create_category_port.dart';
 import 'package:flash_focus/src/domain/category/usecase/create_category_usecase.dart';

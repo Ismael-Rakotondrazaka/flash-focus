@@ -3,7 +3,7 @@ import 'package:flash_focus/src/core/entity/entity.dart';
 import 'package:flash_focus/src/core/entity/removable_entity.dart';
 import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flash_focus/src/core/util/date/copy_date_time.dart';
-import 'package:flash_focus/src/domain/category/entity/category.dart';
+import 'package:flash_focus/src/domain/category/entity/category_entity.dart';
 
 class CardSide with EquatableMixin {
   late String? _title;

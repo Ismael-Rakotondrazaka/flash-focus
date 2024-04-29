@@ -1,5 +1,5 @@
 import 'package:flash_focus/src/core/persistance/repository_option.dart';
-import 'package:flash_focus/src/domain/attempt/entity/attempt.dart';
+import 'package:flash_focus/src/domain/attempt/entity/attempt_entity.dart';
 import 'package:flash_focus/src/domain/attempt/port/persistance/attempt_repository_port.dart';
 import 'package:flash_focus/src/domain/attempt/port/usecase/remove_attempt_port.dart';
 import 'package:flash_focus/src/domain/attempt/usecase/remove_attempt_usecase.dart';

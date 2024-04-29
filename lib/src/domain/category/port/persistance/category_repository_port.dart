@@ -1,6 +1,6 @@
 import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flash_focus/src/core/persistance/repository_option.dart';
-import 'package:flash_focus/src/domain/category/entity/category.dart';
+import 'package:flash_focus/src/domain/category/entity/category_entity.dart';
 import 'package:flutter/material.dart';
 
 @immutable

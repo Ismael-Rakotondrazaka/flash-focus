@@ -1,9 +1,9 @@
 import 'package:flash_focus/src/core/identifier/identifier.dart';
-import 'package:flash_focus/src/domain/card/entity/card.dart';
+import 'package:flash_focus/src/domain/card/entity/card_entity.dart';
 import 'package:flash_focus/src/domain/card/port/persistence/card_repository.dart';
 import 'package:flash_focus/src/domain/card/port/usecase/create_card_port.dart';
 import 'package:flash_focus/src/domain/card/usecase/create_card_usecase.dart';
-import 'package:flash_focus/src/domain/category/entity/category.dart';
+import 'package:flash_focus/src/domain/category/entity/category_entity.dart';
 import 'package:flash_focus/src/domain/category/port/persistance/category_repository_port.dart';
 
 class CreateCardService implements CreateCardUseCase {

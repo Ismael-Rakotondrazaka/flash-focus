@@ -3,7 +3,7 @@ import 'package:flash_focus/src/core/persistance/repository_option.dart';
 import 'package:flash_focus/src/data/infrastructure/persistance/sqlite/entity/card/sqlite_card.dart';
 import 'package:flash_focus/src/data/infrastructure/persistance/sqlite/entity/card/sqlite_card_mapper.dart';
 import 'package:flash_focus/src/data/infrastructure/persistance/sqlite/entity/category/sqlite_category.dart';
-import 'package:flash_focus/src/domain/card/entity/card.dart';
+import 'package:flash_focus/src/domain/card/entity/card_entity.dart';
 import 'package:flash_focus/src/domain/card/port/persistence/card_repository.dart';
 import 'package:uuid/uuid.dart';
 import 'package:sqflite/sqflite.dart';
