@@ -3,6 +3,8 @@ import 'package:flash_focus/src/core/persistance/repository_option.dart';
 import 'package:flash_focus/src/domain/category/entity/category_entity.dart';
 import 'package:flash_focus/src/domain/category/port/persistance/category_repository_port.dart';
 import 'package:flash_focus/src/domain/category/port/usecase/get_category_list_port.dart';
+import 'package:flash_focus/src/domain/category/usecase/dto/category.dart';
+import 'package:flash_focus/src/domain/category/usecase/dto/category_dto_mapper.dart';
 import 'package:flash_focus/src/domain/category/usecase/get_category_list_usecase.dart';
 
 class GetCategoryListService implements GetCategoryListUseCase {
@@ -13,7 +15,7 @@ class GetCategoryListService implements GetCategoryListUseCase {
   });
 
   @override
-  Future<List<CategoryEntity>> call({
+  Future<List<Category>> call({
     required GetCategoryListPort input,
   }) async {
     try {
@@ -25,7 +27,7 @@ class GetCategoryListService implements GetCategoryListUseCase {
         ),
       );
 
-      return categories;
+      return CategoryDTOMapper.toDTOList(categories);
     } catch (e) {
       rethrow;
     }

@@ -3,6 +3,8 @@ import 'package:flash_focus/src/core/persistance/repository_option.dart';
 import 'package:flash_focus/src/domain/attempt/entity/attempt_entity.dart';
 import 'package:flash_focus/src/domain/attempt/port/persistance/attempt_repository_port.dart';
 import 'package:flash_focus/src/domain/attempt/port/usecase/get_attempt_list_port.dart';
+import 'package:flash_focus/src/domain/attempt/usecase/dto/attempt.dart';
+import 'package:flash_focus/src/domain/attempt/usecase/dto/attempt_dto_mapper.dart';
 import 'package:flash_focus/src/domain/attempt/usecase/get_attempt_list_usecase.dart';
 
 class GetAttemptListService implements GetAttemptListUseCase {
@@ -13,7 +15,7 @@ class GetAttemptListService implements GetAttemptListUseCase {
   });
 
   @override
-  Future<List<AttemptEntity>> call({
+  Future<List<Attempt>> call({
     required GetAttemptListPort input,
   }) async {
     try {
@@ -27,7 +29,7 @@ class GetAttemptListService implements GetAttemptListUseCase {
         ),
       );
 
-      return attempts;
+      return AttemptDTOMapper.toDTOList(attempts);
     } catch (e) {
       rethrow;
     }

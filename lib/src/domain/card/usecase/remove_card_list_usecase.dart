@@ -3,4 +3,5 @@ import 'package:flash_focus/src/domain/card/port/usecase/remove_card_list_port.d
 import 'package:flutter/material.dart';
 
 @immutable
-abstract class RemoveCardListUseCase extends UseCase<RemoveCardListPort, void> {}
+abstract class RemoveCardListUseCase
+    extends UseCase<RemoveCardListPort, void> {}

@@ -3,6 +3,8 @@ import 'package:flash_focus/src/core/persistance/repository_option.dart';
 import 'package:flash_focus/src/domain/card/entity/card_entity.dart';
 import 'package:flash_focus/src/domain/card/port/persistence/card_repository.dart';
 import 'package:flash_focus/src/domain/card/port/usecase/edit_card_port.dart';
+import 'package:flash_focus/src/domain/card/usecase/dto/card.dart';
+import 'package:flash_focus/src/domain/card/usecase/dto/card_dto_mapper.dart';
 import 'package:flash_focus/src/domain/card/usecase/edit_card_usecase.dart';
 
 class EditCardService implements EditCardUseCase {
@@ -13,7 +15,7 @@ class EditCardService implements EditCardUseCase {
   });
 
   @override
-  Future<CardEntity> call({
+  Future<Card> call({
     required EditCardPort input,
   }) async {
     try {
@@ -31,7 +33,7 @@ class EditCardService implements EditCardUseCase {
 
       await cardRepository.updateCard(card: card);
 
-      return card;
+      return CardDTOMapper.toDTO(card);
     } catch (e) {
       rethrow;
     }

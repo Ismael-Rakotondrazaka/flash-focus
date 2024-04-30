@@ -4,6 +4,8 @@ import 'package:flash_focus/src/domain/card/entity/card_entity.dart';
 import 'package:flash_focus/src/domain/card/port/persistence/card_repository.dart';
 import 'package:flash_focus/src/domain/card/port/usecase/create_card_port.dart';
 import 'package:flash_focus/src/domain/card/usecase/create_card_usecase.dart';
+import 'package:flash_focus/src/domain/card/usecase/dto/card.dart';
+import 'package:flash_focus/src/domain/card/usecase/dto/card_dto_mapper.dart';
 import 'package:flash_focus/src/domain/category/entity/category_entity.dart';
 import 'package:flash_focus/src/domain/category/port/persistance/category_repository_port.dart';
 
@@ -17,7 +19,7 @@ class CreateCardService implements CreateCardUseCase {
   });
 
   @override
-  Future<CardEntity> call({
+  Future<Card> call({
     required CreateCardPort input,
   }) async {
     try {
@@ -46,7 +48,7 @@ class CreateCardService implements CreateCardUseCase {
 
       await cardRepository.addCard(card: card);
 
-      return card;
+      return CardDTOMapper.toDTO(card);
     } catch (e) {
       rethrow;
     }

@@ -1,9 +1,9 @@
-
-
 import 'package:flash_focus/src/domain/category/entity/category_entity.dart';
 import 'package:flash_focus/src/domain/category/port/persistance/category_repository_port.dart';
 import 'package:flash_focus/src/domain/category/port/usecase/create_category_port.dart';
 import 'package:flash_focus/src/domain/category/usecase/create_category_usecase.dart';
+import 'package:flash_focus/src/domain/category/usecase/dto/category.dart';
+import 'package:flash_focus/src/domain/category/usecase/dto/category_dto_mapper.dart';
 
 class CreateCategoryService implements CreateCategoryUseCase {
   final CategoryRepositoryPort categoryRepository;
@@ -13,7 +13,7 @@ class CreateCategoryService implements CreateCategoryUseCase {
   });
 
   @override
-  Future<CategoryEntity> call({
+  Future<Category> call({
     required CreateCategoryPort input,
   }) async {
     try {
@@ -23,7 +23,7 @@ class CreateCategoryService implements CreateCategoryUseCase {
 
       await categoryRepository.addCategory(category: category);
 
-      return category;
+      return CategoryDTOMapper.toDTO(category);
     } catch (e) {
       rethrow;
     }

@@ -9,7 +9,8 @@ abstract class SQLiteAttemptMapper {
     return AttemptEntity(
       id: IntIdentifier(value: sqLiteAttempt.id),
       cardId: StringIdentifier(value: sqLiteAttempt.cardId),
-      isSuccess: SQLiteAttemptIsSuccessMapper.toDomainEntity(sqLiteAttempt.isSuccess),
+      isSuccess:
+          SQLiteAttemptIsSuccessMapper.toDomainEntity(sqLiteAttempt.isSuccess),
       createdAt: DateTime.parse(sqLiteAttempt.createdAt),
       deletedAt: sqLiteAttempt.deletedAt != null
           ? DateTime.parse(sqLiteAttempt.deletedAt!)
@@ -21,7 +22,8 @@ abstract class SQLiteAttemptMapper {
     return SQLiteAttempt(
       id: attemptEntity.id.value,
       cardId: attemptEntity.cardId.value,
-      isSuccess: SQLiteAttemptIsSuccessMapper.toSQLiteEntity(attemptEntity.isSuccess),
+      isSuccess:
+          SQLiteAttemptIsSuccessMapper.toSQLiteEntity(attemptEntity.isSuccess),
       createdAt: attemptEntity.createdAt.toIso8601String(),
       deletedAt: attemptEntity.deletedAt?.toIso8601String(),
     );

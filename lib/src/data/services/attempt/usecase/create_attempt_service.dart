@@ -3,6 +3,8 @@ import 'package:flash_focus/src/domain/attempt/entity/attempt_entity.dart';
 import 'package:flash_focus/src/domain/attempt/port/persistance/attempt_repository_port.dart';
 import 'package:flash_focus/src/domain/attempt/port/usecase/create_attempt_port.dart';
 import 'package:flash_focus/src/domain/attempt/usecase/create_attempt_usecase.dart';
+import 'package:flash_focus/src/domain/attempt/usecase/dto/attempt.dart';
+import 'package:flash_focus/src/domain/attempt/usecase/dto/attempt_dto_mapper.dart';
 import 'package:flash_focus/src/domain/card/port/persistence/card_repository.dart';
 
 class CreateAttemptService implements CreateAttemptUseCase {
@@ -15,7 +17,7 @@ class CreateAttemptService implements CreateAttemptUseCase {
   });
 
   @override
-  Future<AttemptEntity> call({
+  Future<Attempt> call({
     required CreateAttemptPort input,
   }) async {
     try {
@@ -32,7 +34,7 @@ class CreateAttemptService implements CreateAttemptUseCase {
 
       await attemptRepository.addAttempt(attempt: attempt);
 
-      return attempt;
+      return AttemptDTOMapper.toDTO(attempt);
     } catch (e) {
       rethrow;
     }

@@ -3,4 +3,5 @@ import 'package:flash_focus/src/domain/attempt/port/usecase/remove_attempt_list_
 import 'package:flutter/material.dart';
 
 @immutable
-abstract class RemoveAttemptListUseCase extends UseCase<RemoveAttemptListPort, void> {}
+abstract class RemoveAttemptListUseCase
+    extends UseCase<RemoveAttemptListPort, void> {}
