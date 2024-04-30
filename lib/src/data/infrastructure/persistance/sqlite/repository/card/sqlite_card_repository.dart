@@ -1,3 +1,4 @@
+import 'package:flash_focus/src/core/exception/not_found_exception.dart';
 import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flash_focus/src/core/persistance/repository_option.dart';
 import 'package:flash_focus/src/data/infrastructure/persistance/sqlite/entity/card/sqlite_card.dart';
@@ -22,19 +23,14 @@ class SQLiteCardRepository implements CardRepositoryPort {
   Future<StringIdentifier> addCard({
     required CardEntity card,
   }) async {
-    try {
-      StringIdentifier id = StringIdentifier(value: _uuid.v4());
-      card.id = id;
+    StringIdentifier id = StringIdentifier(value: _uuid.v4());
+    card.id = id;
 
-      SQLiteCard sqLiteCard = SQLiteCardMapper.toSQLiteEntity(card);
+    SQLiteCard sqLiteCard = SQLiteCardMapper.toSQLiteEntity(card);
 
-      await _db.insert(SQLiteCard.tableName, sqLiteCard.toMap());
+    await _db.insert(SQLiteCard.tableName, sqLiteCard.toMap());
 
-      return id;
-    } catch (e) {
-      // TODO
-      rethrow;
-    }
+    return id;
   }
 
   static const String selectProperties = """
@@ -89,7 +85,10 @@ class SQLiteCardRepository implements CardRepositoryPort {
     var results = await _db.rawQuery(query, whereArgs);
 
     if (results.isEmpty) {
-      throw UnimplementedError();
+      throw NotFoundException(
+        message: "The card is not found.",
+        description: "It doesn't exist or already deleted.",
+      );
     }
 
     SQLiteCard sqLiteCard = SQLiteCard.fromMap(results.first);

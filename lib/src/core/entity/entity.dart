@@ -1,4 +1,4 @@
-import 'package:flash_focus/src/core/exception/identifier_not_assigned.dart';
+import 'package:flash_focus/src/core/exception/identifier_not_assigned_exception.dart';
 import 'package:flash_focus/src/core/identifier/identifier.dart';
 
 class Entity<T extends Identifier> {

@@ -1,10 +1,13 @@
+import 'package:flash_focus/src/core/exception/database_already_opened_exception.dart';
+import 'package:flash_focus/src/core/exception/database_not_opened_yet_exception.dart';
+import 'package:flash_focus/src/core/exception/file_system_rw_exception.dart';
 import 'package:flash_focus/src/data/infrastructure/persistance/sqlite/migrations/create_attempt_table.dart';
 import 'package:flash_focus/src/data/infrastructure/persistance/sqlite/migrations/create_card_table.dart';
 import 'package:flash_focus/src/data/infrastructure/persistance/sqlite/migrations/create_category_table.dart';
 import 'package:flash_focus/src/data/infrastructure/persistance/sqlite/util/migration.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart'
-    show getApplicationDocumentsDirectory;
+    show MissingPlatformDirectoryException, getApplicationDocumentsDirectory;
 import 'package:sqflite/sqflite.dart';
 
 class SQLiteDatabase {
@@ -19,9 +22,8 @@ class SQLiteDatabase {
         _dbName = dbName;
 
   Database getDatabase() {
-    if (_database != null) {
-      // TODO throw database already open
-      throw UnimplementedError();
+    if (_database == null) {
+      throw DatabaseNotOpenedYetException();
     }
 
     return _database!;
@@ -30,8 +32,7 @@ class SQLiteDatabase {
   // Method to open and retrieve the existing database
   Future<Database> open() async {
     if (_database != null) {
-      // TODO throw database already open
-      throw UnimplementedError();
+      throw DatabaseAlreadyOpenedException();
     }
 
     try {
@@ -57,9 +58,8 @@ class SQLiteDatabase {
       );
 
       return _database!;
-    } catch (e) {
-      // TODO add internal exception
-      rethrow;
+    } on MissingPlatformDirectoryException {
+      throw FileSystemRWException();
     }
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flash_focus/src/core/exception/not_found_exception.dart';
 import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flash_focus/src/core/persistance/repository_option.dart';
 import 'package:flash_focus/src/data/infrastructure/persistance/sqlite/entity/attempt/sqlite_attempt.dart';
@@ -67,8 +68,10 @@ class SQLiteAttemptRepository implements AttemptRepositoryPort {
     var results = await _db.rawQuery(query, whereArgs);
 
     if (results.isEmpty) {
-      // TODO throw not found
-      throw UnimplementedError();
+      throw NotFoundException(
+        message: "The attempt is not found.",
+        description: "May be it doesn't exist or already deleted.",
+      );
     }
 
     SQLiteAttempt sqLiteAttempt = SQLiteAttempt.fromMap(results.first);

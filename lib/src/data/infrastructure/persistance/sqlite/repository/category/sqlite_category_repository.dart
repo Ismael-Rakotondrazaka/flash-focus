@@ -1,3 +1,4 @@
+import 'package:flash_focus/src/core/exception/not_found_exception.dart';
 import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flash_focus/src/core/persistance/repository_option.dart';
 import 'package:flash_focus/src/data/infrastructure/persistance/sqlite/entity/category/sqlite_category.dart';
@@ -106,8 +107,10 @@ class SQLiteCategoryRepository implements CategoryRepositoryPort {
     var results = await _db.rawQuery(query, whereArgs);
 
     if (results.isEmpty) {
-      // TODO throw not found
-      throw UnimplementedError();
+      throw NotFoundException(
+        message: "The category is not found.",
+        description: "It doesn't exist or already deleted.",
+      );
     }
 
     SQLiteCategory sqLiteCategory = SQLiteCategory.fromMap(results.first);
