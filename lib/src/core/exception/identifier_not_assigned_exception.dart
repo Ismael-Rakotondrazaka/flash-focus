@@ -1,7 +1,7 @@
 import 'package:flash_focus/src/core/exception/internal_exception.dart';
 
 class IdentifierNotAssignedException extends InternalException<void> {
-  IdentifierNotAssignedException({
+  const IdentifierNotAssignedException({
     String? message,
     super.description,
   }) : super(

@@ -1,7 +1,7 @@
 import 'package:flash_focus/src/core/exception/internal_exception.dart';
 
 class NotFoundException extends InternalException<void> {
-  NotFoundException({
+  const NotFoundException({
     String? message,
     super.description,
   }) : super(
