@@ -2,6 +2,7 @@ import 'package:flash_focus/src/core/exception/database_already_opened_exception
 import 'package:flash_focus/src/core/exception/database_not_opened_yet_exception.dart';
 import 'package:flash_focus/src/core/exception/file_system_rw_exception.dart';
 import 'package:flash_focus/src/core/exception/identifier_not_assigned_exception.dart';
+import 'package:flash_focus/src/core/exception/incorrect_relationship_exception.dart';
 import 'package:flash_focus/src/core/exception/internal_exception.dart';
 import 'package:flash_focus/src/core/exception/not_found_exception.dart';
 import 'package:flash_focus/src/core/exception/unknown_exception.dart';
@@ -59,6 +60,16 @@ void main() {
   group("IdentifierNotAssignedException", () {
     test('should extends InternalException', () {
       const instance = IdentifierNotAssignedException();
+
+      expect(instance, isA<InternalException>());
+    });
+  });
+
+  group("IncorrectRelationshipException", () {
+    test('should extends InternalException', () {
+      const instance = IncorrectRelationshipException(
+        data: "custom relationship",
+      );
 
       expect(instance, isA<InternalException>());
     });
