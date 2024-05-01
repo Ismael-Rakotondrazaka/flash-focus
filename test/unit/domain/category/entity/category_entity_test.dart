@@ -5,57 +5,68 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group("CategoryEntity", () {
-    test('should extends Entity', () {
-      final category = CategoryEntity(
-        id: const IntIdentifier(value: 1),
-        name: 'Category 1',
-      );
+    group("parent", () {
+      test('should be Entity', () {
+        final category = CategoryEntity(
+          id: const IntIdentifier(value: 1),
+          name: 'Category 1',
+        );
 
-      expect(category, isA<Entity>());
+        expect(category, isA<Entity>());
+      });
     });
 
-    test('should return true when the two categories are equal', () {
-      final category1 = CategoryEntity(
-        id: const IntIdentifier(value: 1),
-        name: 'Category 1',
-      );
-      final category2 = CategoryEntity(
-        id: const IntIdentifier(value: 1),
-        name: 'Category 1',
-      );
-      expect(category1.hashCode, category2.hashCode);
+    group("constructor", () {
+      test("should return an instance of CategoryEntity with given properties",
+          () {
+        final category = CategoryEntity(
+          id: const IntIdentifier(value: 1),
+          name: 'Category 1',
+        );
+
+        expect(category, isA<CategoryEntity>());
+        expect(category.id, const IntIdentifier(value: 1));
+        expect(category.name, 'Category 1');
+      });
     });
 
-    test('should return false when the two categories are different', () {
-      final category1 = CategoryEntity(
-        id: const IntIdentifier(value: 1),
-        name: 'Category 1',
-      );
-      final category2 = CategoryEntity(
-        id: const IntIdentifier(value: 2),
-        name: 'Category 2',
-      );
-      expect(category1.hashCode, isNot(category2.hashCode));
+    group("comparison", () {
+      test('should return true when the two categories are equal', () {
+        final category1 = CategoryEntity(
+          id: const IntIdentifier(value: 1),
+          name: 'Category 1',
+        );
+        final category2 = CategoryEntity(
+          id: const IntIdentifier(value: 1),
+          name: 'Category 1',
+        );
+        expect(category1.hashCode, category2.hashCode);
+      });
+
+      test('should return false when the two categories are different', () {
+        final category1 = CategoryEntity(
+          id: const IntIdentifier(value: 1),
+          name: 'Category 1',
+        );
+        final category2 = CategoryEntity(
+          id: const IntIdentifier(value: 2),
+          name: 'Category 2',
+        );
+        expect(category1.hashCode, isNot(category2.hashCode));
+      });
     });
 
-    test('should return the category name', () {
-      final category = CategoryEntity(
-        id: const IntIdentifier(value: 1),
-        name: 'Category 1',
-      );
+    group("edit", () {
+      test('should return the new name', () {
+        final category = CategoryEntity(
+          id: const IntIdentifier(value: 1),
+          name: 'Category 1',
+        );
 
-      expect(category.name, 'Category 1');
-    });
+        category.edit(name: 'Category 2');
 
-    test('when edit category should return the new name', () {
-      final category = CategoryEntity(
-        id: const IntIdentifier(value: 1),
-        name: 'Category 1',
-      );
-
-      category.edit(name: 'Category 2');
-
-      expect(category.name, 'Category 2');
+        expect(category.name, 'Category 2');
+      });
     });
   });
 }
