@@ -24,7 +24,7 @@ void main() {
         id: 1,
         name: 'Category 1',
       );
-      expect(category1.hashCode, category2.hashCode);
+      expect(category1, category2);
     });
 
     test('should return false when the two categories are different', () {
@@ -36,7 +36,7 @@ void main() {
         id: 2,
         name: 'Category 2',
       );
-      expect(category1.hashCode, isNot(category2.hashCode));
+      expect(category1, isNot(category2));
     });
   });
 }
