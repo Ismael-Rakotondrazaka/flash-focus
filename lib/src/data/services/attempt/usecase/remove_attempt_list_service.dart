@@ -1,3 +1,5 @@
+import 'package:flash_focus/src/core/exception/internal_exception.dart';
+import 'package:flash_focus/src/core/exception/unknown_exception.dart';
 import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flash_focus/src/core/persistance/repository_option.dart';
 import 'package:flash_focus/src/domain/attempt/entity/attempt_entity.dart';
@@ -31,8 +33,10 @@ class RemoveAttemptListService implements RemoveAttemptListUseCase {
           disableSoftDeleting: input.disableSoftDeleting ?? false,
         ),
       );
-    } catch (e) {
+    } on InternalException {
       rethrow;
+    } catch (e) {
+      throw UnknownException();
     }
   }
 }

@@ -1,3 +1,5 @@
+import 'package:flash_focus/src/core/exception/internal_exception.dart';
+import 'package:flash_focus/src/core/exception/unknown_exception.dart';
 import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flash_focus/src/core/persistance/repository_option.dart';
 import 'package:flash_focus/src/domain/category/entity/category_entity.dart';
@@ -25,8 +27,10 @@ class RemoveCategoryListService implements RemoveCategoryListUseCase {
       );
 
       await categoryRepository.removeCategories(categories: categories);
-    } catch (e) {
+    } on InternalException {
       rethrow;
+    } catch (e) {
+      throw UnknownException();
     }
   }
 }

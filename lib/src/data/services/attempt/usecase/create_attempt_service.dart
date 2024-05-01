@@ -1,3 +1,5 @@
+import 'package:flash_focus/src/core/exception/internal_exception.dart';
+import 'package:flash_focus/src/core/exception/unknown_exception.dart';
 import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flash_focus/src/domain/attempt/entity/attempt_entity.dart';
 import 'package:flash_focus/src/domain/attempt/port/persistance/attempt_repository_port.dart';
@@ -35,8 +37,10 @@ class CreateAttemptService implements CreateAttemptUseCase {
       await attemptRepository.addAttempt(attempt: attempt);
 
       return AttemptDTOMapper.toDTO(attempt);
-    } catch (e) {
+    } on InternalException {
       rethrow;
+    } catch (e) {
+      throw UnknownException();
     }
   }
 }

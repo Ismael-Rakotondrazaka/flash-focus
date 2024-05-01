@@ -1,3 +1,5 @@
+import 'package:flash_focus/src/core/exception/internal_exception.dart';
+import 'package:flash_focus/src/core/exception/unknown_exception.dart';
 import 'package:flash_focus/src/domain/category/entity/category_entity.dart';
 import 'package:flash_focus/src/domain/category/port/persistance/category_repository_port.dart';
 import 'package:flash_focus/src/domain/category/port/usecase/create_category_port.dart';
@@ -24,8 +26,10 @@ class CreateCategoryService implements CreateCategoryUseCase {
       await categoryRepository.addCategory(category: category);
 
       return CategoryDTOMapper.toDTO(category);
-    } catch (e) {
+    } on InternalException {
       rethrow;
+    } catch (e) {
+      throw UnknownException();
     }
   }
 }

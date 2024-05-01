@@ -1,3 +1,5 @@
+import 'package:flash_focus/src/core/exception/internal_exception.dart';
+import 'package:flash_focus/src/core/exception/unknown_exception.dart';
 import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flash_focus/src/core/persistance/repository_option.dart';
 import 'package:flash_focus/src/domain/card/entity/card_entity.dart';
@@ -29,8 +31,10 @@ class GetCardListService implements GetCardListUseCase {
       );
 
       return CardDTOMapper.toDTOList(cards);
-    } catch (e) {
+    } on InternalException {
       rethrow;
+    } catch (e) {
+      throw UnknownException();
     }
   }
 }
