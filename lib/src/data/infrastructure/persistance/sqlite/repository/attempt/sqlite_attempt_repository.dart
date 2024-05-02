@@ -68,7 +68,7 @@ class SQLiteAttemptRepository implements AttemptRepositoryPort {
     var results = await _db.rawQuery(query, whereArgs);
 
     if (results.isEmpty) {
-      throw NotFoundException(
+      throw const NotFoundException(
         message: "The attempt is not found.",
         description: "May be it doesn't exist or already deleted.",
       );

@@ -35,7 +35,7 @@ class GetAttemptListService implements GetAttemptListUseCase {
     } on InternalException {
       rethrow;
     } catch (e) {
-      throw UnknownException();
+      throw const UnknownException();
     }
   }
 }

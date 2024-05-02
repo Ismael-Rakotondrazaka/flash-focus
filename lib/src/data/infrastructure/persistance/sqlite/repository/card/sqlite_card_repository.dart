@@ -85,7 +85,7 @@ class SQLiteCardRepository implements CardRepositoryPort {
     var results = await _db.rawQuery(query, whereArgs);
 
     if (results.isEmpty) {
-      throw NotFoundException(
+      throw const NotFoundException(
         message: "The card is not found.",
         description: "It doesn't exist or already deleted.",
       );

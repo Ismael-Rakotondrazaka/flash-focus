@@ -39,7 +39,7 @@ class RemoveCardListService implements RemoveCardListUseCase {
     } on InternalException {
       rethrow;
     } catch (e) {
-      throw UnknownException();
+      throw const UnknownException();
     }
   }
 }

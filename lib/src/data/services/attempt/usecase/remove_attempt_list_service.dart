@@ -36,7 +36,7 @@ class RemoveAttemptListService implements RemoveAttemptListUseCase {
     } on InternalException {
       rethrow;
     } catch (e) {
-      throw UnknownException();
+      throw const UnknownException();
     }
   }
 }

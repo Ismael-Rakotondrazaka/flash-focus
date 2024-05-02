@@ -95,24 +95,20 @@ class CardEntity extends Entity<StringIdentifier>
   }
 
   void edit({
-    String? frontTitle,
-    String? frontContent,
-    String? backTitle,
-    String? backContent,
+    CardSideEntity? back,
+    CardSideEntity? front,
     IntIdentifier? categoryId,
     CategoryEntity? category,
   }) {
     _updatedAt = DateTime.now();
 
-    _front.edit(
-      content: frontTitle,
-      title: frontTitle,
-    );
+    if (back is CardSideEntity) {
+      _back = back;
+    }
 
-    _back.edit(
-      content: frontTitle,
-      title: frontTitle,
-    );
+    if (front is CardSideEntity) {
+      _front = front;
+    }
 
     _categoryId = categoryId;
 

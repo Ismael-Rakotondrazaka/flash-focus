@@ -107,7 +107,7 @@ class SQLiteCategoryRepository implements CategoryRepositoryPort {
     var results = await _db.rawQuery(query, whereArgs);
 
     if (results.isEmpty) {
-      throw NotFoundException(
+      throw const NotFoundException(
         message: "The category is not found.",
         description: "It doesn't exist or already deleted.",
       );

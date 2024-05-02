@@ -29,7 +29,7 @@ class CreateCategoryService implements CreateCategoryUseCase {
     } on InternalException {
       rethrow;
     } catch (e) {
-      throw UnknownException();
+      throw const UnknownException();
     }
   }
 }

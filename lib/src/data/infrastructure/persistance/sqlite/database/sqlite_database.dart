@@ -23,7 +23,7 @@ class SQLiteDatabase {
 
   Database getDatabase() {
     if (_database == null) {
-      throw DatabaseNotOpenedYetException();
+      throw const DatabaseNotOpenedYetException();
     }
 
     return _database!;
@@ -32,7 +32,7 @@ class SQLiteDatabase {
   // Method to open and retrieve the existing database
   Future<Database> open() async {
     if (_database != null) {
-      throw DatabaseAlreadyOpenedException();
+      throw const DatabaseAlreadyOpenedException();
     }
 
     try {
@@ -59,7 +59,7 @@ class SQLiteDatabase {
 
       return _database!;
     } on MissingPlatformDirectoryException {
-      throw FileSystemRWException();
+      throw const FileSystemRWException();
     }
   }
 }
