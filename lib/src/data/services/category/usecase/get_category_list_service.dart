@@ -33,7 +33,7 @@ class GetCategoryListService implements GetCategoryListUseCase {
     } on InternalException {
       rethrow;
     } catch (e) {
-      throw UnknownException();
+      throw const UnknownException();
     }
   }
 }

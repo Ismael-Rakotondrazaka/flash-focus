@@ -1,7 +1,7 @@
 import 'package:flash_focus/src/core/exception/internal_exception.dart';
 
 class FileSystemRWException extends InternalException<void> {
-  FileSystemRWException()
+  const FileSystemRWException()
       : super(
           data: null,
           message: "Could not read or write on the file system.",

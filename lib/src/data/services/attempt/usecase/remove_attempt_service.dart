@@ -37,7 +37,7 @@ class RemoveAttemptService implements RemoveAttemptUseCase {
     } on InternalException {
       rethrow;
     } catch (e) {
-      throw UnknownException();
+      throw const UnknownException();
     }
   }
 }

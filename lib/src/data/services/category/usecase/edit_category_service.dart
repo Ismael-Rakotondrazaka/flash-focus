@@ -34,7 +34,7 @@ class EditCategoryService implements EditCategoryUseCase {
     } on InternalException {
       rethrow;
     } catch (e) {
-      throw UnknownException();
+      throw const UnknownException();
     }
   }
 }

@@ -34,7 +34,7 @@ class GetCardListService implements GetCardListUseCase {
     } on InternalException {
       rethrow;
     } catch (e) {
-      throw UnknownException();
+      throw const UnknownException();
     }
   }
 }

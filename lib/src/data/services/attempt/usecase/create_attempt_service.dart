@@ -40,7 +40,7 @@ class CreateAttemptService implements CreateAttemptUseCase {
     } on InternalException {
       rethrow;
     } catch (e) {
-      throw UnknownException();
+      throw const UnknownException();
     }
   }
 }

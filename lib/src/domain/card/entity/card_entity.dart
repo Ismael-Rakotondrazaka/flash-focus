@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flash_focus/src/core/entity/entity.dart';
 import 'package:flash_focus/src/core/entity/removable_entity.dart';
+import 'package:flash_focus/src/core/exception/incorrect_relationship_exception.dart';
 import 'package:flash_focus/src/core/identifier/identifier.dart';
 import 'package:flash_focus/src/core/util/date/copy_date_time.dart';
 import 'package:flash_focus/src/domain/category/entity/category_entity.dart';
@@ -81,6 +82,20 @@ class CardEntity extends Entity<StringIdentifier>
     _categoryId = categoryId;
     _category = category;
 
+    final isOnlyOneIsProvided = (category == null && categoryId != null) ||
+        (category != null && categoryId == null);
+    final isBothProvided = category != null && categoryId != null;
+    if (isOnlyOneIsProvided) {
+      throw const IncorrectRelationshipException(
+        data: "Incorrect category relation.",
+      );
+    }
+    if (isBothProvided && category.id != categoryId) {
+      throw const IncorrectRelationshipException(
+        data: "Incorrect category relation.",
+      );
+    }
+
     if (createdAt == null) {
       _createdAt = DateTime.now();
     } else {
@@ -95,24 +110,20 @@ class CardEntity extends Entity<StringIdentifier>
   }
 
   void edit({
-    String? frontTitle,
-    String? frontContent,
-    String? backTitle,
-    String? backContent,
+    CardSideEntity? back,
+    CardSideEntity? front,
     IntIdentifier? categoryId,
     CategoryEntity? category,
   }) {
     _updatedAt = DateTime.now();
 
-    _front.edit(
-      content: frontTitle,
-      title: frontTitle,
-    );
+    if (back is CardSideEntity) {
+      _back = back;
+    }
 
-    _back.edit(
-      content: frontTitle,
-      title: frontTitle,
-    );
+    if (front is CardSideEntity) {
+      _front = front;
+    }
 
     _categoryId = categoryId;
 

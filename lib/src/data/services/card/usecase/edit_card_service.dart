@@ -26,11 +26,20 @@ class EditCardService implements EditCardUseCase {
         option: const RepositoryFindOptions(includeRemoved: false),
       );
 
+      card.front.edit(
+        content: input.frontContent,
+        title: input.frontTitle,
+      );
+
+      card.back.edit(
+        content: input.backContent,
+        title: input.backTitle,
+      );
+
+      // Add update for card category
       card.edit(
-        frontContent: input.frontContent,
-        frontTitle: input.frontTitle,
-        backContent: input.backContent,
-        backTitle: input.backTitle,
+        back: card.back,
+        front: card.back,
       );
 
       await cardRepository.updateCard(card: card);
@@ -39,7 +48,7 @@ class EditCardService implements EditCardUseCase {
     } on InternalException {
       rethrow;
     } catch (e) {
-      throw UnknownException();
+      throw const UnknownException();
     }
   }
 }

@@ -10,7 +10,7 @@ class Entity<T extends Identifier> {
 
   T get id {
     if (_id == null) {
-      throw IdentifierNotAssignedException();
+      throw const IdentifierNotAssignedException();
     }
 
     return _id as T;

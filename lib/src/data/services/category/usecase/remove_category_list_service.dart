@@ -30,7 +30,7 @@ class RemoveCategoryListService implements RemoveCategoryListUseCase {
     } on InternalException {
       rethrow;
     } catch (e) {
-      throw UnknownException();
+      throw const UnknownException();
     }
   }
 }
